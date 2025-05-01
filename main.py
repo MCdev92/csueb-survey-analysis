@@ -16,9 +16,10 @@ dept_map = {
 }
 
 # 1. Locate all survey exports
-data_folder = '/Users/student/Documents/survey-data/eval-data/uni-wide'
+data_folder = 'sample-data/eval-data/cos_chem'
 output_folder = 'transformation' 
 pattern = os.path.join(data_folder, '*StudentExperienceSurvey*.csv')
+pattern = os.path.join(data_folder, '*CHEMSURVEY*.csv')
 all_files = [f for f in glob.glob(pattern) if not os.path.basename(f).startswith('sample_cos_report')]
 if not all_files:
     raise FileNotFoundError(f"No CSVs found in {data_folder} matching pattern")
@@ -135,7 +136,7 @@ final = pd.concat([
 final = final.sort_values(by=meta_cols+['Question'])
 
 # 14. Write to Excel
-out_path = os.path.join(output_folder, 'uwide.xlsx')
+out_path = os.path.join(output_folder, 'coschem.xlsx')
 final.to_excel(out_path, index=False, engine='openpyxl')
 print(f"✓ Written Excel report to {os.path.abspath(out_path)}")
 
