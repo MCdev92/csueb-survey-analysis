@@ -7,7 +7,7 @@
 
 > This project is a Python-based data processing pipeline designed to ingest raw student experience survey exports and transform them into clean, analyzable datasets. It standardizes inconsistent formats, resolves encoding issues, enriches records with official CRNs by term, and computes key metrics such as mean, median, standard deviation, and response rates.
 
-The final output is a set of well-structured Excel reports that summarize course feedback, faculty performance, and student engagement trends across departments. Designed for institutional research teams, academic leadership, and curriculum committees, the system supports data-driven evaluation and continuous improvement in teaching and learning.
+> The final output is a set of well-structured Excel reports that summarize course feedback, faculty performance, and student engagement trends across departments. Designed for institutional research teams, academic leadership, and curriculum committees, the system supports data-driven evaluation and continuous improvement in teaching and learning.
 
 ---
 
