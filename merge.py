@@ -20,11 +20,17 @@ course_offerings_df[['Course ID', 'CRN', 'Term']] = course_offerings_df['Course 
 # === Prepare merge keys for relaxed match ===
 def split_course_offering(value):
     parts = value.split('_')
-    if len(parts) >= 2:
+    if len(parts) == 5:
         term = parts[0]
-        course_id = '_'.join(parts[1:])
+        subj = parts[1]
+        course = parts[2]
+        section = parts[3]
+        suffix = parts[4]
+        # Rearranged to match registrar format
+        course_id = f"{subj}_{course}_{suffix}_{section}"
         return pd.Series([term, course_id])
     return pd.Series([None, None])
+
 
 coschem_df[['TermCode', 'ParsedCourseID']] = coschem_df['Course Offering'].apply(split_course_offering)
 uwide_df[['TermCode', 'ParsedCourseID']] = uwide_df['Course Offering'].apply(split_course_offering)
@@ -43,18 +49,18 @@ coschem_df['SimplifiedCourseID'] = coschem_df['ParsedCourseID'].apply(simplify_c
 uwide_df['SimplifiedCourseID'] = uwide_df['ParsedCourseID'].apply(simplify_course_id)
 course_offerings_df['SimplifiedCourseID'] = course_offerings_df['ParsedCourseID'].apply(simplify_course_id)
 
-# === Merge CRNs ===
+# Merge with strict keys
 coschem_merged = pd.merge(
     coschem_df,
-    course_offerings_df[['SimplifiedCourseID', 'TermCode', 'CRN']],
-    on=['SimplifiedCourseID', 'TermCode'],
+    course_offerings_df[['ParsedCourseID', 'TermCode', 'CRN']],
+    on=['ParsedCourseID', 'TermCode'],
     how='left'
 )
 
 uwide_merged = pd.merge(
     uwide_df,
-    course_offerings_df[['SimplifiedCourseID', 'TermCode', 'CRN']],
-    on=['SimplifiedCourseID', 'TermCode'],
+    course_offerings_df[['ParsedCourseID', 'TermCode', 'CRN']],
+    on=['ParsedCourseID', 'TermCode'],
     how='left'
 )
 
@@ -75,5 +81,5 @@ coschem_final = coschem_merged.drop(columns=columns_to_drop, errors='ignore')
 uwide_final = uwide_merged.drop(columns=columns_to_drop, errors='ignore')
 
 # === Save ===
-coschem_final.to_excel("coschem_final.xlsx", index=False)
-uwide_final.to_excel("uwide_final.xlsx", index=False)
+coschem_final.to_excel("coschemf.xlsx", index=False)
+uwide_final.to_excel("uwidef.xlsx", index=False)

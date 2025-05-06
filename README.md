@@ -21,15 +21,14 @@ README.md                 # Project documentation
 ---
 
 ## ⚙️ Features
-
-- ✅ Parses and cleans raw student experience survey data
+- ✅ Parses and standardizes raw student survey exports
+- ✅ Automatically handles encoding (e.g., UTF-8 / cp1252)
 - ✅ Computes:
-  - Mean, Median, Standard Deviation for scaled questions
-  - Sum for binary (Yes/No) responses
-- ✅ Concatenates all open-text feedback responses
-- ✅ Removes inconsistent question numbering
-- ✅ Outputs clean, formatted Excel reports
-- ✅ Handles file encoding issues automatically
+  - 📊 Mean, Median, and Standard Deviation for scaled responses
+  - ✔️ Sums for binary (Yes/No) responses
+- ✅ Extracts and merges CRNs using course ID + term
+- ✅ Concatenates all open-text feedback using `" | "` delimiter
+- ✅ Produces clean, structured Excel outputs using `openpyxl`
 
 ---
 
@@ -50,8 +49,10 @@ pip install -r requirements.txt
 
 ## 🧠 Notes
 
-* Ensure input files match expected formatting (one row per student response).
+* Input files must follow the expected format (one row per student response).
 
-* All text feedback comments are concatenated into a single field separated by " | ".
+* Open-ended feedback is concatenated per course using " | " separator.
 
-* Project is easily extendable for future survey structures or new evaluation forms.
+* CRNs are dynamically merged based on term + parsed course code.
+
+* Project is modular and easily extensible to accommodate other survey formats or evaluation structures.
