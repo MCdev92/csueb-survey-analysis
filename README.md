@@ -15,11 +15,12 @@
 
 
 <pre> 
-/eval-data/uni-wide/      # Raw input CSV files
-/output/                  # Generated Excel reports
-main.py                   # Main analysis script
-requirements.txt          # Python libraries needed
-README.md                 # Project documentation
+/eval-data/uni-wide| /coschem   # Raw input CSV files
+/output/                        # Generated Excel reports
+main.py                         # Main analysis script
+merge.py                        # $ digit CRM merge script
+requirements.txt                # Python libraries needed
+README.md                       # Project documentation
 </pre>
 
 
