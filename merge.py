@@ -3,7 +3,7 @@ import pandas as pd
 # === Load files ===
 coschem_df = pd.read_excel("transformation/coschem.xlsx")
 uwide_df = pd.read_excel("transformation/uwide.xlsx")
-course_offerings_df = pd.read_csv("sample-files/FA22-SU24 course offerings.csv")
+course_offerings_df = pd.read_csv("sample-files/FA22-SU24 course offerings_complete.csv")
 
 # === Parse course offering IDs ===
 def parse_course_offering_id(offering_id):
@@ -81,5 +81,5 @@ coschem_final = coschem_merged.drop(columns=columns_to_drop, errors='ignore')
 uwide_final = uwide_merged.drop(columns=columns_to_drop, errors='ignore')
 
 # === Save ===
-coschem_final.to_excel("coschemf.xlsx", index=False)
-uwide_final.to_excel("uwidef.xlsx", index=False)
+coschem_final.to_excel("coschem-final.xlsx", index=False)
+uwide_final.to_excel("uwide-final.xlsx", index=False)
