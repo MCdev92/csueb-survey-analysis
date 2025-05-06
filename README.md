@@ -12,13 +12,13 @@
 ## 📂 Project Structure
 
 
-<pre> ```
+<pre> 
 /eval-data/uni-wide/      # Raw input CSV files
 /output/                  # Generated Excel reports
 main.py                   # Main analysis script
 requirements.txt          # Python libraries needed
 README.md                 # Project documentation
-``` </pre>
+</pre>
 
 
 ---
